@@ -12,7 +12,8 @@ export const getServerSideProps = async ({ params: { name }, res }) => {
   const arrayBuffer = await data.arrayBuffer();
 
   res.setHeader("Content-Type", data.type);
-  res.send(Buffer.from(arrayBuffer));
+  res.write(Buffer.from(arrayBuffer));
+  res.end();
 
   return {
     props: {},
